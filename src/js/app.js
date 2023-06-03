@@ -28,19 +28,26 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
+  let name = `<h1>${variables.name ? variables.name : "Name &"} ${
+    variables.lastname ? variables.lastname : "Last Name"
+  }</h1>`;
+  let role = `<h2>${variables.role ? variables.role : "Role"}</h2>`;
+  let city = `<h3>${variables.city ? variables.city : "City"}, ${
+    variables.country ? variables.country : "Country"
+  }</h3>`;
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/4geeksacademy"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/4geeksacademy"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/4geeksacademy"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/4geeksacademy"><i class="fab fa-instagram"></i></a></li>
+          <h1>${name}</h1>
+          <h2>${role}</h2>
+          <h3>${city}</h3>
+          <ul class="${variables.socialMediaPosition}">
+            <li><a href=${variables.twitter}><i class="fab fa-twitter"></i></a></li>
+            <li><a href=${variables.github}><i class="fab fa-github"></i></a></li>
+            <li><a href=${variables.linkedin}><i class="fab fa-linkedin"></i></a></li>
+            <li><a href=${variables.instagram}><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -54,9 +61,11 @@ window.onload = function() {
     // if includeCover is true the algorithm should
     includeCover: true,
     // this is the url of the image that will used as background for the profile cover
-    background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da",
+    background:
+      "https://images.unsplash.com/photo-1605379399642-870262d3d051?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=906&q=80",
     // this is the url for the profile avatar
-    avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
+    avatarURL:
+      "https://media.licdn.com/dms/image/C5603AQFxw8WwIaYGUw/profile-displayphoto-shrink_800_800/0/1582832926230?e=1691020800&v=beta&t=T078EpSXmt7YmF8qEb4wkjX3-BmguutYQLsp3s1ISVA",
     // social media bar position (left or right)
     socialMediaPosition: "position-left",
     // social media usernames
